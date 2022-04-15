@@ -16,7 +16,7 @@
 #include "entitydef/entitydef.h"	
 #include "entitydef/scriptdef_module.h"
 #include "entitydef/entity_macro.h"	
-#include "server/script_timers.h"	
+#include "server/script_timers.h"
 	
 namespace KBEngine{
 
@@ -671,6 +671,7 @@ protected:
 	Controllers*											pControllers_;
 	KBEShared_ptr<Controller>								pMoveController_;
 	KBEShared_ptr<Controller>								pTurnController_;
+	KBEShared_ptr<Controller>                               pAiController_;
 	
 	script::ScriptVector3::PYVector3ChangedCallback			pyPositionChangedCallback_;
 	script::ScriptVector3::PYVector3ChangedCallback			pyDirectionChangedCallback_;

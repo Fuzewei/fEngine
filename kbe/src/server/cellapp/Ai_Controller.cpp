@@ -4,7 +4,7 @@ namespace KBEngine {
 
 
 	//-------------------------------------------------------------------------------------
-	AiController::AiController(Entity* pEntity, KBEShared_ptr<behaviac::Agent> pAiAgentHandler = NULL, uint32 id = 0) :
+	AiController::AiController(Entity* pEntity, KBEShared_ptr<behaviac::Agent> pAiAgentHandler, uint32 id) :
 		Controller(Controller::CONTROLLER_TYPE_AI, pEntity, 0, id),
 		pAiAgentHandler_(pAiAgentHandler)
 	{

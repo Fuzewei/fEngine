@@ -10,10 +10,12 @@
 #include "behaviac_headers.h"
 
 ///<<< BEGIN WRITING YOUR CODE FILE_INIT
-
+#include "../../../entity.h"
+#include "../../../entity.h"
+namespace behaviac {
 ///<<< END WRITING YOUR CODE
 
-class Monster : public behaviac::Agent
+class Monster : public Agent
 ///<<< BEGIN WRITING YOUR CODE Monster
 ///<<< END WRITING YOUR CODE
 {
@@ -25,13 +27,17 @@ public:
 
 	public: void hello();
 
+	public: void pyMethod(behaviac::string funcName);
+
 ///<<< BEGIN WRITING YOUR CODE CLASS_PART
 
-///<<< END WRITING YOUR CODE
+		  KBEngine::Entity* pEntity_;
+
+		  ///<<< END WRITING YOUR CODE
 };
 
 ///<<< BEGIN WRITING YOUR CODE FILE_UNINIT
-
+}
 ///<<< END WRITING YOUR CODE
 
 #endif

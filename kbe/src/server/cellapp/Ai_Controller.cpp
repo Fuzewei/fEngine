@@ -18,6 +18,11 @@ namespace KBEngine {
 	}
 
 	//-------------------------------------------------------------------------------------
+	void updateLoop() {
+
+	}
+
+	//-------------------------------------------------------------------------------------
 	void AiController::addToStream(KBEngine::MemoryStream& s)
 	{
 		Controller::addToStream(s);
@@ -29,6 +34,15 @@ namespace KBEngine {
 	void AiController::createFromStream(KBEngine::MemoryStream& s)
 	{
 		
+	}
+
+	//-------------------------------------------------------------------------------------
+	bool AiController::InitBehavic()
+	{
+		behaviac::Workspace::GetInstance()->SetFilePath("../tutorials/tutorial_1_1/cpp/exported");
+
+		behaviac::Workspace::GetInstance()->SetFileFormat(behaviac::Workspace::EFF_xml);
+		return true;
 	}
 
 	//-------------------------------------------------------------------------------------

@@ -212,6 +212,7 @@
     <ClCompile Include="..\..\lib\dependencies\vsopenssl\include\openssl\applink.c" />
     <ClCompile Include="Ai_Controller.cpp" />
     <ClCompile Include="all_clients.cpp" />
+    <ClCompile Include="behaviac_generated\types\internal\Monster.cpp" />
     <ClCompile Include="entity_component.cpp" />
     <ClCompile Include="space.cpp" />
     <ClCompile Include="view_trigger.cpp" />
@@ -261,6 +262,7 @@
   <ItemGroup>
     <ClInclude Include="Ai_Controller.h" />
     <ClInclude Include="all_clients.h" />
+    <ClInclude Include="behaviac_generated\types\internal\Monster.h" />
     <ClInclude Include="space.h" />
     <ClInclude Include="view_trigger.h" />
     <ClInclude Include="cell.h" />

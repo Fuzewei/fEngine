@@ -237,7 +237,7 @@ namespace behaviac
 
 		virtual bool load()
 		{
-			AgentMeta::SetTotalSignature(839160888u);
+			AgentMeta::SetTotalSignature(1602831870u);
 
 			AgentMeta* meta = NULL;
 			BEHAVIAC_UNUSED_VAR(meta);
@@ -253,10 +253,11 @@ namespace behaviac
 			meta->RegisterMethod(502968959u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorRemove());
 
 			// Monster
-			meta = BEHAVIAC_NEW AgentMeta(2034256859u);
+			meta = BEHAVIAC_NEW AgentMeta(4217460212u);
 			AgentMeta::GetAgentMetas()[4028337988u] = meta;
 			meta->RegisterMethod(1501221454u, BEHAVIAC_NEW CAgentMethodVoid(FunctionPointer_Monster_hello));
 			meta->RegisterMethod(1045109914u, BEHAVIAC_NEW CAgentStaticMethodVoid_1<char*>(FunctionPointer_Monster_LogMessage));
+			meta->RegisterMethod(2578324224u, BEHAVIAC_NEW CAgentMethodVoid_1<behaviac::string>(FunctionPointer_Monster_pyMethod));
 			meta->RegisterMethod(2521019022u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorAdd());
 			meta->RegisterMethod(2306090221u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorClear());
 			meta->RegisterMethod(3483755530u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorContains());

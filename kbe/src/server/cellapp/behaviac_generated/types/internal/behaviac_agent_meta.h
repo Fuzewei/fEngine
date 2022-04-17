@@ -17,5 +17,6 @@ namespace behaviac
 	inline void FunctionPointer_behaviac_Agent_LogMessage(char* param0) { behaviac::Agent::LogMessage(param0); }
 	inline void FunctionPointer_Monster_hello(Agent* self) { ((Monster*)self)->hello(); }
 	inline void FunctionPointer_Monster_LogMessage(char* param0) { Monster::LogMessage(param0); }
+	inline void FunctionPointer_Monster_pyMethod(Agent* self, behaviac::string funcName) { ((Monster*)self)->pyMethod(funcName); }
 }
 #endif // _BEHAVIAC_AGENT_PROPERTIES_H_

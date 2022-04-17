@@ -1,4 +1,5 @@
 #include "Ai_Controller.h"
+#include "resmgr/resmgr.h"
 
 namespace KBEngine {
 
@@ -39,9 +40,15 @@ namespace KBEngine {
 	//-------------------------------------------------------------------------------------
 	bool AiController::InitBehavic()
 	{
-		behaviac::Workspace::GetInstance()->SetFilePath("../tutorials/tutorial_1_1/cpp/exported");
-
+		std::string exportPath = Resmgr::getSingleton().getPyUserResPath() + g_kbeSrvConfig.behaviacExportPath_;
+		behaviac::Workspace::GetInstance()->SetFilePath(exportPath.c_str());
 		behaviac::Workspace::GetInstance()->SetFileFormat(behaviac::Workspace::EFF_xml);
+		return true;
+	}
+
+	//-------------------------------------------------------------------------------------
+	bool AiController::InitPlayer()
+	{
 		return true;
 	}
 

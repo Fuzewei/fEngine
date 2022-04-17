@@ -331,6 +331,8 @@ public:
 	EmailSendInfo emailResetPasswordInfo_;
 	EmailSendInfo emailBindInfo_;
 
+	std::string behaviacExportPath_;//行为树导出目录
+
 };
 
 #define g_kbeSrvConfig ServerConfig::getSingleton()

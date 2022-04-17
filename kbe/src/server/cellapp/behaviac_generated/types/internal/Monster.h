@@ -11,7 +11,6 @@
 
 ///<<< BEGIN WRITING YOUR CODE FILE_INIT
 #include "../../../entity.h"
-#include "../../../entity.h"
 namespace behaviac {
 ///<<< END WRITING YOUR CODE
 

@@ -75,6 +75,12 @@ bool ServerConfig::loadConfig(std::string fileName)
 		email_service_config = xml->getValStr(rootNode);
 	}
 
+	rootNode = xml->getRootNode("behaviac_export_path");
+	if (rootNode != NULL)
+	{
+		behaviacExportPath_ = xml->getValStr(rootNode);
+	}
+
 	rootNode = xml->getRootNode("packetAlwaysContainLength");
 	if(rootNode != NULL){
 		Network::g_packetAlwaysContainLength = xml->getValInt(rootNode) != 0;

@@ -15,8 +15,10 @@ namespace behaviac
 	// ---------------------------------------------------------------------
 
 	inline void FunctionPointer_behaviac_Agent_LogMessage(char* param0) { behaviac::Agent::LogMessage(param0); }
-	inline void FunctionPointer_Monster_hello(Agent* self) { ((Monster*)self)->hello(); }
-	inline void FunctionPointer_Monster_LogMessage(char* param0) { Monster::LogMessage(param0); }
-	inline void FunctionPointer_Monster_pyMethod(Agent* self, behaviac::string funcName) { ((Monster*)self)->pyMethod(funcName); }
+	inline void FunctionPointer_behaviac_KbeAgentBase_callPyFunc(Agent* self, behaviac::string funcName) { ((behaviac::KbeAgentBase*)self)->_Execute_Method_<behaviac::METHOD_TYPE_behaviac_KbeAgentBase_callPyFunc, void, behaviac::string >(funcName); }
+	inline void FunctionPointer_behaviac_KbeAgentBase_LogMessage(char* param0) { behaviac::KbeAgentBase::LogMessage(param0); }
+	inline void FunctionPointer_behaviac_Monster_callPyFunc(Agent* self, behaviac::string funcName) { ((behaviac::KbeAgentBase*)self)->_Execute_Method_<behaviac::METHOD_TYPE_behaviac_KbeAgentBase_callPyFunc, void, behaviac::string >(funcName); }
+	inline void FunctionPointer_behaviac_Monster_hello(Agent* self) { ((behaviac::Monster*)self)->hello(); }
+	inline void FunctionPointer_behaviac_Monster_LogMessage(char* param0) { behaviac::Monster::LogMessage(param0); }
 }
 #endif // _BEHAVIAC_AGENT_PROPERTIES_H_

@@ -17,6 +17,7 @@
 #include "entitydef/scriptdef_module.h"
 #include "entitydef/entity_macro.h"	
 #include "server/script_timers.h"
+#include "Ai_Controller.h"	
 	
 namespace KBEngine{
 
@@ -256,6 +257,19 @@ public:
 		返回观察该实体的所有观察者
 	*/
 	DECLARE_PY_MOTHOD_ARG0(pyGetWitnesses);
+
+
+	/**
+		初始化ai控制器
+	*/
+	DECLARE_PY_MOTHOD_ARG1(pyInitAiController, const_charptr);
+
+
+	/**
+		驱动ai控制器
+	*/
+	DECLARE_PY_MOTHOD_ARG0(pyUpdateAiController);
+
 
 	/** 
 		当前entity是否为real 
@@ -671,7 +685,7 @@ protected:
 	Controllers*											pControllers_;
 	KBEShared_ptr<Controller>								pMoveController_;
 	KBEShared_ptr<Controller>								pTurnController_;
-	KBEShared_ptr<Controller>                               pAiController_;
+	KBEShared_ptr<AiController>                             pAiController_;
 	
 	script::ScriptVector3::PYVector3ChangedCallback			pyPositionChangedCallback_;
 	script::ScriptVector3::PYVector3ChangedCallback			pyDirectionChangedCallback_;

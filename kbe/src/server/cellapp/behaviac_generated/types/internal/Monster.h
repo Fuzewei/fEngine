@@ -4,39 +4,50 @@
 // PLEASE MODIFY AND REGENERETE IT IN THE DESIGNER FOR CLASS/MEMBERS/METHODS, ETC.
 // -------------------------------------------------------------------------------
 
-#ifndef _BEHAVIAC_MONSTER_H_
-#define _BEHAVIAC_MONSTER_H_
+#ifndef _BEHAVIAC_BEHAVIAC_MONSTER_H_
+#define _BEHAVIAC_BEHAVIAC_MONSTER_H_
 
 #include "behaviac_headers.h"
 
+#include "KbeAgentBase.h"
+
 ///<<< BEGIN WRITING YOUR CODE FILE_INIT
-#include "../../../entity.h"
-namespace behaviac {
-///<<< END WRITING YOUR CODE
 
-class Monster : public Agent
-///<<< BEGIN WRITING YOUR CODE Monster
-///<<< END WRITING YOUR CODE
+
+	///<<< END WRITING YOUR CODE
+
+namespace behaviac
 {
-public:
-	Monster();
-	virtual ~Monster();
+///<<< BEGIN WRITING YOUR CODE NAMESPACE_INIT
 
-	BEHAVIAC_DECLARE_AGENTTYPE(Monster, behaviac::Agent)
+///<<< END WRITING YOUR CODE
 
-	public: void hello();
+	class Monster : public behaviac::KbeAgentBase
+///<<< BEGIN WRITING YOUR CODE Monster
+		///<<< END WRITING YOUR CODE
+	{
+	public:
+		Monster();
+		virtual ~Monster();
 
-	public: void pyMethod(behaviac::string funcName);
+		BEHAVIAC_DECLARE_AGENTTYPE(behaviac::Monster, behaviac::KbeAgentBase)
+
+		public: void hello();
 
 ///<<< BEGIN WRITING YOUR CODE CLASS_PART
 
-		  KBEngine::Entity* pEntity_;
 
-		  ///<<< END WRITING YOUR CODE
-};
+
+				  ///<<< END WRITING YOUR CODE
+	};
+
+///<<< BEGIN WRITING YOUR CODE NAMESPACE_UNINIT
+
+///<<< END WRITING YOUR CODE
+}
 
 ///<<< BEGIN WRITING YOUR CODE FILE_UNINIT
-}
+
 ///<<< END WRITING YOUR CODE
 
 #endif

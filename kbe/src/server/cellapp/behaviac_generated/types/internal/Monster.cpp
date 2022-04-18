@@ -7,36 +7,39 @@
 #include "Monster.h"
 
 ///<<< BEGIN WRITING YOUR CODE FILE_INIT
-namespace behaviac {
 	///<<< END WRITING YOUR CODE
 
-Monster::Monster()
+namespace behaviac
 {
+///<<< BEGIN WRITING YOUR CODE NAMESPACE_INIT
+
+///<<< END WRITING YOUR CODE
+
+	Monster::Monster()
+	{
 ///<<< BEGIN WRITING YOUR CODE CONSTRUCTOR
 
 		///<<< END WRITING YOUR CODE
-}
+	}
 
-Monster::~Monster()
-{
+	Monster::~Monster()
+	{
 ///<<< BEGIN WRITING YOUR CODE DESTRUCTOR
 
 		///<<< END WRITING YOUR CODE
-}
+	}
 
-void Monster::hello()
-{
+	void Monster::hello()
+	{
 ///<<< BEGIN WRITING YOUR CODE hello
-		///<<< END WRITING YOUR CODE
-}
 
-void Monster::pyMethod(behaviac::string funcName)
-{
-///<<< BEGIN WRITING YOUR CODE pyMethod
 		///<<< END WRITING YOUR CODE
-}
+	}
 
+///<<< BEGIN WRITING YOUR CODE NAMESPACE_UNINIT
+
+///<<< END WRITING YOUR CODE
+}
 
 ///<<< BEGIN WRITING YOUR CODE FILE_UNINIT
-}
 ///<<< END WRITING YOUR CODE

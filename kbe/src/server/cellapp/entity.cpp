@@ -13,7 +13,8 @@
 #include "real_entity_method.h"
 #include "entity_coordinate_node.h"
 #include "proximity_controller.h"
-#include "move_controller.h"	
+#include "move_controller.h"
+#include "Ai_Controller.h"	
 #include "moveto_point_handler.h"	
 #include "moveto_entity_handler.h"	
 #include "navigate_handler.h"	
@@ -65,6 +66,8 @@ SCRIPT_METHOD_DECLARE("teleport",					pyTeleport,						METH_VARARGS,				0)
 SCRIPT_METHOD_DECLARE("destroySpace",				pyDestroySpace,					METH_VARARGS,				0)
 SCRIPT_METHOD_DECLARE("debugView",					pyDebugView,					METH_VARARGS,				0)
 SCRIPT_METHOD_DECLARE("getWitnesses",				pyGetWitnesses,					METH_VARARGS,				0)
+SCRIPT_METHOD_DECLARE("initAiController",			pyInitAiController,				METH_VARARGS,				0)
+SCRIPT_METHOD_DECLARE("updateAiController",			pyUpdateAiController,			METH_VARARGS,				0)
 ENTITY_METHOD_DECLARE_END()
 
 SCRIPT_MEMBER_DECLARE_BEGIN(Entity)
@@ -2506,6 +2509,29 @@ PyObject* Entity::pyGetWitnesses()
 }
 
 //-------------------------------------------------------------------------------------
+PyObject* Entity::pyInitAiController(const char* filePath)
+{
+
+	KBEShared_ptr<AiController> p(new AiController(this, filePath));
+	pAiController_ = p;
+	p->Init();
+	Py_RETURN_TRUE;
+}
+
+//-------------------------------------------------------------------------------------
+PyObject* Entity::pyUpdateAiController()
+{
+	if (!pAiController_)
+	{
+		return PyLong_FromLong(behaviac::EBTStatus::BT_FAILURE);
+	}
+	
+	behaviac::EBTStatus status = pAiController_->updateLoop();
+
+	return PyLong_FromLong(status);
+}
+
+//-------------------------------------------------------------------------------------
 float Entity::getViewHystArea(void) const
 {
 	if(pWitness_)
@@ -2811,6 +2837,7 @@ uint32 Entity::moveToPoint(const Position3D& destination, float velocity, float 
 	pMoveController_ = p;
 	return p->id();
 }
+
 
 //-------------------------------------------------------------------------------------
 PyObject* Entity::pyMoveToPoint(PyObject_ptr pyDestination, float velocity, float distance, PyObject_ptr userData,

@@ -237,7 +237,7 @@ namespace behaviac
 
 		virtual bool load()
 		{
-			AgentMeta::SetTotalSignature(1602831870u);
+			AgentMeta::SetTotalSignature(2967397239u);
 
 			AgentMeta* meta = NULL;
 			BEHAVIAC_UNUSED_VAR(meta);
@@ -252,12 +252,23 @@ namespace behaviac
 			meta->RegisterMethod(505785840u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorLength());
 			meta->RegisterMethod(502968959u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorRemove());
 
-			// Monster
-			meta = BEHAVIAC_NEW AgentMeta(4217460212u);
-			AgentMeta::GetAgentMetas()[4028337988u] = meta;
-			meta->RegisterMethod(1501221454u, BEHAVIAC_NEW CAgentMethodVoid(FunctionPointer_Monster_hello));
-			meta->RegisterMethod(1045109914u, BEHAVIAC_NEW CAgentStaticMethodVoid_1<char*>(FunctionPointer_Monster_LogMessage));
-			meta->RegisterMethod(2578324224u, BEHAVIAC_NEW CAgentMethodVoid_1<behaviac::string>(FunctionPointer_Monster_pyMethod));
+			// behaviac::KbeAgentBase
+			meta = BEHAVIAC_NEW AgentMeta(2441780620u);
+			AgentMeta::GetAgentMetas()[2432351009u] = meta;
+			meta->RegisterMethod(916351369u, BEHAVIAC_NEW CAgentMethodVoid_1<behaviac::string>(FunctionPointer_behaviac_KbeAgentBase_callPyFunc));
+			meta->RegisterMethod(1045109914u, BEHAVIAC_NEW CAgentStaticMethodVoid_1<char*>(FunctionPointer_behaviac_KbeAgentBase_LogMessage));
+			meta->RegisterMethod(2521019022u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorAdd());
+			meta->RegisterMethod(2306090221u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorClear());
+			meta->RegisterMethod(3483755530u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorContains());
+			meta->RegisterMethod(505785840u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorLength());
+			meta->RegisterMethod(502968959u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorRemove());
+
+			// behaviac::Monster
+			meta = BEHAVIAC_NEW AgentMeta(3087391711u);
+			AgentMeta::GetAgentMetas()[4159774213u] = meta;
+			meta->RegisterMethod(916351369u, BEHAVIAC_NEW CAgentMethodVoid_1<behaviac::string>(FunctionPointer_behaviac_Monster_callPyFunc));
+			meta->RegisterMethod(1501221454u, BEHAVIAC_NEW CAgentMethodVoid(FunctionPointer_behaviac_Monster_hello));
+			meta->RegisterMethod(1045109914u, BEHAVIAC_NEW CAgentStaticMethodVoid_1<char*>(FunctionPointer_behaviac_Monster_LogMessage));
 			meta->RegisterMethod(2521019022u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorAdd());
 			meta->RegisterMethod(2306090221u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorClear());
 			meta->RegisterMethod(3483755530u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorContains());
@@ -265,7 +276,8 @@ namespace behaviac
 			meta->RegisterMethod(502968959u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorRemove());
 
 			AgentMeta::Register<behaviac::Agent>("behaviac::Agent");
-			AgentMeta::Register<Monster>("Monster");
+			AgentMeta::Register<behaviac::KbeAgentBase>("behaviac::KbeAgentBase");
+			AgentMeta::Register<behaviac::Monster>("behaviac::Monster");
 
 			return true;
 		}
@@ -273,7 +285,8 @@ namespace behaviac
 		virtual bool unLoad()
 		{
 			AgentMeta::UnRegister<behaviac::Agent>("behaviac::Agent");
-			AgentMeta::UnRegister<Monster>("Monster");
+			AgentMeta::UnRegister<behaviac::KbeAgentBase>("behaviac::KbeAgentBase");
+			AgentMeta::UnRegister<behaviac::Monster>("behaviac::Monster");
 
 			return true;
 		}

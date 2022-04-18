@@ -212,6 +212,8 @@
     <ClCompile Include="..\..\lib\dependencies\vsopenssl\include\openssl\applink.c" />
     <ClCompile Include="Ai_Controller.cpp" />
     <ClCompile Include="all_clients.cpp" />
+    <ClCompile Include="behaviac_generated\types\internal\behaviac_agent_meta.cpp" />
+    <ClCompile Include="behaviac_generated\types\internal\KbeAgentBase.cpp" />
     <ClCompile Include="behaviac_generated\types\internal\Monster.cpp" />
     <ClCompile Include="entity_component.cpp" />
     <ClCompile Include="space.cpp" />
@@ -262,6 +264,12 @@
   <ItemGroup>
     <ClInclude Include="Ai_Controller.h" />
     <ClInclude Include="all_clients.h" />
+    <ClInclude Include="behaviac_generated\types\behaviac_types.h" />
+    <ClInclude Include="behaviac_generated\types\internal\behaviac_agent_headers.h" />
+    <ClInclude Include="behaviac_generated\types\internal\behaviac_agent_member_visitor.h" />
+    <ClInclude Include="behaviac_generated\types\internal\behaviac_agent_meta.h" />
+    <ClInclude Include="behaviac_generated\types\internal\behaviac_headers.h" />
+    <ClInclude Include="behaviac_generated\types\internal\KbeAgentBase.h" />
     <ClInclude Include="behaviac_generated\types\internal\Monster.h" />
     <ClInclude Include="space.h" />
     <ClInclude Include="view_trigger.h" />

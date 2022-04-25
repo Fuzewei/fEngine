@@ -10,15 +10,6 @@
 // Agent property and method handlers
 
 
-namespace behaviac
-{
-	struct METHOD_TYPE_behaviac_KbeAgentBase_callPyFunc { };
-	template<> inline void KbeAgentBase::_Execute_Method_<METHOD_TYPE_behaviac_KbeAgentBase_callPyFunc>(behaviac::string p0)
-	{
-		this->behaviac::KbeAgentBase::callPyFunc(p0);
-	}
-
-}
 
 
 #endif // _BEHAVIAC_MEMBER_VISITOR_H_

@@ -171,6 +171,9 @@
     <ClCompile Include="behaviac_generated\types\internal\behaviac_agent_meta.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="behaviac_generated\types\internal\behaviac_kbe_types.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="all_clients.h">
@@ -330,6 +333,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="behaviac_generated\types\internal\behaviac_headers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="behaviac_generated\types\internal\behaviac_customized_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="behaviac_generated\types\internal\behaviac_kbe_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -213,6 +213,7 @@
     <ClCompile Include="Ai_Controller.cpp" />
     <ClCompile Include="all_clients.cpp" />
     <ClCompile Include="behaviac_generated\types\internal\behaviac_agent_meta.cpp" />
+    <ClCompile Include="behaviac_generated\types\internal\behaviac_kbe_types.cpp" />
     <ClCompile Include="behaviac_generated\types\internal\KbeAgentBase.cpp" />
     <ClCompile Include="behaviac_generated\types\internal\Monster.cpp" />
     <ClCompile Include="entity_component.cpp" />
@@ -268,6 +269,8 @@
     <ClInclude Include="behaviac_generated\types\internal\behaviac_agent_headers.h" />
     <ClInclude Include="behaviac_generated\types\internal\behaviac_agent_member_visitor.h" />
     <ClInclude Include="behaviac_generated\types\internal\behaviac_agent_meta.h" />
+    <ClInclude Include="behaviac_generated\types\internal\behaviac_kbe_types.h" />
+    <ClInclude Include="behaviac_generated\types\internal\behaviac_customized_types.h" />
     <ClInclude Include="behaviac_generated\types\internal\behaviac_headers.h" />
     <ClInclude Include="behaviac_generated\types\internal\KbeAgentBase.h" />
     <ClInclude Include="behaviac_generated\types\internal\Monster.h" />

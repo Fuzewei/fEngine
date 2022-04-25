@@ -8,6 +8,37 @@
 
 namespace behaviac
 {
+	class CInstanceConst_behaviac_EnemyInfo : public CInstanceConstBase<behaviac::EnemyInfo>
+	{
+		IInstanceMember* _entityId;
+		IInstanceMember* _dis;
+
+	public: 
+		CInstanceConst_behaviac_EnemyInfo(const char* valueStr) : CInstanceConstBase<behaviac::EnemyInfo>(valueStr)
+		{
+			behaviac::vector<behaviac::string> paramStrs = behaviac::StringUtils::SplitTokensForStruct(valueStr);
+			BEHAVIAC_ASSERT(paramStrs.size() == 2);
+
+			_entityId = AgentMeta::TParseProperty<int >(paramStrs[0].c_str());
+			_dis = AgentMeta::TParseProperty<float >(paramStrs[1].c_str());
+		}
+
+		~CInstanceConst_behaviac_EnemyInfo()
+		{
+			BEHAVIAC_DELETE _entityId;
+			BEHAVIAC_DELETE _dis;
+		}
+
+		virtual void run(Agent* self)
+		{
+			BEHAVIAC_ASSERT(_entityId != NULL);
+			BEHAVIAC_ASSERT(_dis != NULL);
+
+			_value.entityId = *(int*)_entityId->GetValue(self, behaviac::Meta::IsVector<int >::Result, behaviac::GetClassTypeNumberId<int >());
+			_value.dis = *(float*)_dis->GetValue(self, behaviac::Meta::IsVector<float >::Result, behaviac::GetClassTypeNumberId<float >());
+		}
+	};
+
 	class CMethod_behaviac_Agent_VectorAdd : public CAgentMethodVoidBase
 	{
 		IInstanceMember* _param0;
@@ -237,10 +268,16 @@ namespace behaviac
 
 		virtual bool load()
 		{
-			AgentMeta::SetTotalSignature(2967397239u);
+			AgentMeta::SetTotalSignature(2156017499u);
 
 			AgentMeta* meta = NULL;
 			BEHAVIAC_UNUSED_VAR(meta);
+
+			// behaviac::EnemyInfo
+			meta = BEHAVIAC_NEW AgentMeta(2811434756u);
+			AgentMeta::GetAgentMetas()[2086330426u] = meta;
+			meta->RegisterMemberProperty(2547715678u, BEHAVIAC_NEW CMemberProperty< int >("entityId", Set_behaviac_EnemyInfo_entityId, Get_behaviac_EnemyInfo_entityId));
+			meta->RegisterMemberProperty(2967653271u, BEHAVIAC_NEW CMemberProperty< float >("dis", Set_behaviac_EnemyInfo_dis, Get_behaviac_EnemyInfo_dis));
 
 			// behaviac::Agent
 			meta = BEHAVIAC_NEW AgentMeta(24743406u);
@@ -253,9 +290,10 @@ namespace behaviac
 			meta->RegisterMethod(502968959u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorRemove());
 
 			// behaviac::KbeAgentBase
-			meta = BEHAVIAC_NEW AgentMeta(2441780620u);
+			meta = BEHAVIAC_NEW AgentMeta(1545305938u);
 			AgentMeta::GetAgentMetas()[2432351009u] = meta;
-			meta->RegisterMethod(916351369u, BEHAVIAC_NEW CAgentMethodVoid_1<behaviac::string>(FunctionPointer_behaviac_KbeAgentBase_callPyFunc));
+			meta->RegisterMethod(916351369u, BEHAVIAC_NEW CAgentMethod_1< behaviac::EBTStatus, behaviac::string >(FunctionPointer_behaviac_KbeAgentBase_callPyFunc));
+			meta->RegisterMethod(1925760633u, BEHAVIAC_NEW CAgentMethod< int >(FunctionPointer_behaviac_KbeAgentBase_getFightType));
 			meta->RegisterMethod(1045109914u, BEHAVIAC_NEW CAgentStaticMethodVoid_1<char*>(FunctionPointer_behaviac_KbeAgentBase_LogMessage));
 			meta->RegisterMethod(2521019022u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorAdd());
 			meta->RegisterMethod(2306090221u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorClear());
@@ -264,11 +302,18 @@ namespace behaviac
 			meta->RegisterMethod(502968959u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorRemove());
 
 			// behaviac::Monster
-			meta = BEHAVIAC_NEW AgentMeta(3087391711u);
+			meta = BEHAVIAC_NEW AgentMeta(3786478542u);
 			AgentMeta::GetAgentMetas()[4159774213u] = meta;
-			meta->RegisterMethod(916351369u, BEHAVIAC_NEW CAgentMethodVoid_1<behaviac::string>(FunctionPointer_behaviac_Monster_callPyFunc));
-			meta->RegisterMethod(1501221454u, BEHAVIAC_NEW CAgentMethodVoid(FunctionPointer_behaviac_Monster_hello));
+			meta->RegisterMemberProperty(3097763630u, BEHAVIAC_NEW CMemberProperty< behaviac::EnemyInfo >("enemyInfo", Set_behaviac_Monster_enemyInfo, Get_behaviac_Monster_enemyInfo));
+			meta->RegisterMethod(916351369u, BEHAVIAC_NEW CAgentMethod_1< behaviac::EBTStatus, behaviac::string >(FunctionPointer_behaviac_Monster_callPyFunc));
+			meta->RegisterMethod(1618876204u, BEHAVIAC_NEW CAgentMethod_1< behaviac::EBTStatus, int >(FunctionPointer_behaviac_Monster_canSkillAttack));
+			meta->RegisterMethod(4257075051u, BEHAVIAC_NEW CAgentMethodVoid_1<int>(FunctionPointer_behaviac_Monster_chaseTarget));
+			meta->RegisterMethod(3261053510u, BEHAVIAC_NEW CAgentMethodVoid(FunctionPointer_behaviac_Monster_findEnemys));
+			meta->RegisterMethod(3873906922u, BEHAVIAC_NEW CAgentMethod< behaviac::EnemyInfo >(FunctionPointer_behaviac_Monster_getEnemyInfo));
+			meta->RegisterMethod(1925760633u, BEHAVIAC_NEW CAgentMethod< int >(FunctionPointer_behaviac_Monster_getFightType));
 			meta->RegisterMethod(1045109914u, BEHAVIAC_NEW CAgentStaticMethodVoid_1<char*>(FunctionPointer_behaviac_Monster_LogMessage));
+			meta->RegisterMethod(725611547u, BEHAVIAC_NEW CAgentMethod_1< behaviac::EBTStatus, float >(FunctionPointer_behaviac_Monster_randomWalk));
+			meta->RegisterMethod(4229661355u, BEHAVIAC_NEW CAgentMethodVoid_1<int>(FunctionPointer_behaviac_Monster_useSkill));
 			meta->RegisterMethod(2521019022u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorAdd());
 			meta->RegisterMethod(2306090221u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorClear());
 			meta->RegisterMethod(3483755530u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorContains());
@@ -278,6 +323,7 @@ namespace behaviac
 			AgentMeta::Register<behaviac::Agent>("behaviac::Agent");
 			AgentMeta::Register<behaviac::KbeAgentBase>("behaviac::KbeAgentBase");
 			AgentMeta::Register<behaviac::Monster>("behaviac::Monster");
+			AgentMeta::Register<behaviac::EnemyInfo>("behaviac::EnemyInfo");
 
 			return true;
 		}
@@ -287,6 +333,7 @@ namespace behaviac
 			AgentMeta::UnRegister<behaviac::Agent>("behaviac::Agent");
 			AgentMeta::UnRegister<behaviac::KbeAgentBase>("behaviac::KbeAgentBase");
 			AgentMeta::UnRegister<behaviac::Monster>("behaviac::Monster");
+			AgentMeta::UnRegister<behaviac::EnemyInfo>("behaviac::EnemyInfo");
 
 			return true;
 		}

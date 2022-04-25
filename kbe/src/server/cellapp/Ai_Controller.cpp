@@ -73,10 +73,9 @@ namespace KBEngine {
 	//-------------------------------------------------------------------------------------
 	behaviac::EBTStatus AiController::updateLoop()
 	{
-		if (status == behaviac::BT_RUNNING)
-		{
-			status = pAiAgentHandler_->btexec();
-		}
+		
+		status = pAiAgentHandler_->btexec();
+		
 		return status;
 	}
 

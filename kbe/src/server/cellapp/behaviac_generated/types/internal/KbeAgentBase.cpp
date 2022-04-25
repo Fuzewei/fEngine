@@ -13,7 +13,7 @@
 namespace behaviac
 {
 ///<<< BEGIN WRITING YOUR CODE NAMESPACE_INIT
-	behaviac::EBTStatus _callPyFunc(KbeAgentBase* agent, behaviac::string funcName, PyObject* pArgs)
+	PyObject* _callPyFunc(KbeAgentBase* agent, behaviac::string funcName, PyObject* pArgs)
 	{
 		behaviac::EBTStatus ans = behaviac::EBTStatus::BT_FAILURE;
 		Py_INCREF(agent->pEntity_);
@@ -21,7 +21,7 @@ namespace behaviac
 		Py_DECREF(agent->pEntity_);
 		if (!pyCallable)
 		{
-			return ans;
+			return NULL;
 		}
 		/*va_list arg_ptr;
 		va_start(arg_ptr, funcName.length());
@@ -40,12 +40,13 @@ namespace behaviac
 
 		if (pyResult)
 		{
-			ans = (behaviac::EBTStatus)PyLong_AsLong(pyResult);
-			Py_DECREF(pyResult);
+			return pyResult;
 		}
 
-		return ans;
+		return NULL;
 	}
+
+	
 
 ///<<< END WRITING YOUR CODE
 
@@ -63,12 +64,33 @@ namespace behaviac
 ///<<< END WRITING YOUR CODE
 	}
 
-	void KbeAgentBase::callPyFunc(behaviac::string funcName)
+	behaviac::EBTStatus KbeAgentBase::callPyFunc(behaviac::string funcName)
 	{
 ///<<< BEGIN WRITING YOUR CODE callPyFunc
-		_callPyFunc(this, funcName, Py_None);
-
+		behaviac::EBTStatus ans = behaviac::EBTStatus::BT_FAILURE;
+		auto res = _callPyFunc(this, funcName, Py_None);
+		if (res)
+		{
+			auto ans = (behaviac::EBTStatus)PyLong_AsLong(res);
+		}
+		return ans;
 		///<<< END WRITING YOUR CODE
+	}
+
+	int KbeAgentBase::getFightType()
+	{
+///<<< BEGIN WRITING YOUR CODE getFightType
+		int ans = -1;
+		Py_INCREF(pEntity_);
+		PyObject* state = PyObject_GetAttrString((PyObject*)pEntity_, "state");
+		Py_DECREF(pEntity_);
+		if (state)
+		{
+			Py_DECREF(state);
+			ans = PyLong_AsLong(state);
+		}
+		return ans;
+///<<< END WRITING YOUR CODE
 	}
 
 ///<<< BEGIN WRITING YOUR CODE NAMESPACE_UNINIT

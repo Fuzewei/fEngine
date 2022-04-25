@@ -32,7 +32,19 @@ namespace behaviac
 
 		BEHAVIAC_DECLARE_AGENTTYPE(behaviac::Monster, behaviac::KbeAgentBase)
 
-		public: void hello();
+		public: behaviac::EnemyInfo enemyInfo;
+
+		public: behaviac::EBTStatus canSkillAttack(int skillId);
+
+		public: void chaseTarget(int entityId);
+
+		public: void findEnemys();
+
+		public: behaviac::EnemyInfo getEnemyInfo();
+
+		public: behaviac::EBTStatus randomWalk(float radius);
+
+		public: void useSkill(int skillId);
 
 ///<<< BEGIN WRITING YOUR CODE CLASS_PART
 

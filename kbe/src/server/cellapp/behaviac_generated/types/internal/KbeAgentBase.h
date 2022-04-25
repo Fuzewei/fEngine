@@ -16,7 +16,7 @@
 namespace behaviac
 {
 ///<<< BEGIN WRITING YOUR CODE NAMESPACE_INIT
-
+	
 ///<<< END WRITING YOUR CODE
 
 	class KbeAgentBase : public behaviac::Agent
@@ -29,7 +29,9 @@ namespace behaviac
 
 		BEHAVIAC_DECLARE_AGENTTYPE(behaviac::KbeAgentBase, behaviac::Agent)
 
-		private: void callPyFunc(behaviac::string funcName);
+		public: behaviac::EBTStatus callPyFunc(behaviac::string funcName);
+
+		public: int getFightType();
 
 ///<<< BEGIN WRITING YOUR CODE CLASS_PART
 	
@@ -39,6 +41,7 @@ namespace behaviac
 	};
 
 ///<<< BEGIN WRITING YOUR CODE NAMESPACE_UNINIT
+	PyObject* _callPyFunc(KbeAgentBase* agent, behaviac::string funcName, PyObject* pArgs);
 
 ///<<< END WRITING YOUR CODE
 }

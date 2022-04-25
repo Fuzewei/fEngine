@@ -29,11 +29,97 @@ namespace behaviac
 		///<<< END WRITING YOUR CODE
 	}
 
-	void Monster::hello()
+	behaviac::EBTStatus Monster::canSkillAttack(int skillId)
 	{
-///<<< BEGIN WRITING YOUR CODE hello
+///<<< BEGIN WRITING YOUR CODE canSkillAttack
+		auto ret = _callPyFunc(this, "canSkillAttack", PyLong_FromLong(skillId));
+		if (ret)
+		{
+			Py_DECREF(ret);
+		}
+		return behaviac::EBTStatus::BT_SUCCESS;
+///<<< END WRITING YOUR CODE
+	}
 
-		///<<< END WRITING YOUR CODE
+	void Monster::chaseTarget(int entityId)
+	{
+///<<< BEGIN WRITING YOUR CODE chaseTarget
+		auto ret = _callPyFunc(this, "chaseTarget", PyLong_FromLong(entityId));
+		if (ret)
+		{
+			Py_DECREF(ret);
+		}
+///<<< END WRITING YOUR CODE
+	}
+
+	void Monster::findEnemys()
+	{
+///<<< BEGIN WRITING YOUR CODE findEnemys
+		auto ret = _callPyFunc(this, "findEnemys", Py_None);
+		if (ret)
+		{
+			Py_DECREF(ret);
+		}
+
+///<<< END WRITING YOUR CODE
+	}
+
+	behaviac::EnemyInfo Monster::getEnemyInfo()
+	{
+///<<< BEGIN WRITING YOUR CODE getEnemyInfo
+		
+		auto ret = _callPyFunc(this, "getEnemyInfo", Py_None);
+		int EntityId = 0;
+		float dis = 0.0f;
+		if (ret)
+		{
+			PyObject* pEntityId = PyTuple_GetItem(ret, 0);
+			EntityId = PyLong_AsLong(pEntityId);
+			PyObject* pyDis =  PyTuple_GetItem(ret, 1);
+			dis = PyFloat_AsDouble(pyDis);
+			Py_DECREF(ret);
+		}
+		else
+		{
+			assert(false);
+		}
+		behaviac::EnemyInfo tmp = { 0 ,0.0f };
+		tmp.entityId = EntityId;
+		tmp.dis = dis;
+		return tmp;
+///<<< END WRITING YOUR CODE
+	}
+
+	behaviac::EBTStatus Monster::randomWalk(float radius)
+	{
+///<<< BEGIN WRITING YOUR CODE randomWalk
+		behaviac::EBTStatus ans = behaviac::EBTStatus::BT_FAILURE;
+		auto ret = _callPyFunc(this, "randomWalk", PyFloat_FromDouble(radius));
+		if (ret)
+		{
+			auto ans = (behaviac::EBTStatus)PyLong_AsLong(ret);
+			Py_DECREF(ret);
+		}
+		return ans;
+///<<< END WRITING YOUR CODE
+	}
+
+	void Monster::useSkill(int skillId)
+	{
+///<<< BEGIN WRITING YOUR CODE useSkill
+		PyObject* pArgs = PyTuple_New(2);
+		
+		PyTuple_SetItem(pArgs, 0, PyLong_FromLong(enemyInfo.entityId));
+		PyTuple_SetItem(pArgs, 1, PyLong_FromLong(2));
+		
+
+		auto ret = _callPyFunc(this, "useSkill", pArgs);
+		if (ret)
+		{
+			auto ans = (behaviac::EBTStatus)PyLong_AsLong(ret);
+			Py_DECREF(ret);
+		}
+///<<< END WRITING YOUR CODE
 	}
 
 ///<<< BEGIN WRITING YOUR CODE NAMESPACE_UNINIT

@@ -7,6 +7,7 @@
 
 #include "behaviac_agent_headers.h"
 #include "behaviac_agent_member_visitor.h"
+#include "behaviac_customized_types.h"
 
 namespace behaviac
 {
@@ -15,10 +16,27 @@ namespace behaviac
 	// ---------------------------------------------------------------------
 
 	inline void FunctionPointer_behaviac_Agent_LogMessage(char* param0) { behaviac::Agent::LogMessage(param0); }
-	inline void FunctionPointer_behaviac_KbeAgentBase_callPyFunc(Agent* self, behaviac::string funcName) { ((behaviac::KbeAgentBase*)self)->_Execute_Method_<behaviac::METHOD_TYPE_behaviac_KbeAgentBase_callPyFunc, void, behaviac::string >(funcName); }
+	inline behaviac::EBTStatus FunctionPointer_behaviac_KbeAgentBase_callPyFunc(Agent* self, behaviac::string funcName) { return ((behaviac::KbeAgentBase*)self)->callPyFunc(funcName); }
+	inline int FunctionPointer_behaviac_KbeAgentBase_getFightType(Agent* self) { return ((behaviac::KbeAgentBase*)self)->getFightType(); }
 	inline void FunctionPointer_behaviac_KbeAgentBase_LogMessage(char* param0) { behaviac::KbeAgentBase::LogMessage(param0); }
-	inline void FunctionPointer_behaviac_Monster_callPyFunc(Agent* self, behaviac::string funcName) { ((behaviac::KbeAgentBase*)self)->_Execute_Method_<behaviac::METHOD_TYPE_behaviac_KbeAgentBase_callPyFunc, void, behaviac::string >(funcName); }
-	inline void FunctionPointer_behaviac_Monster_hello(Agent* self) { ((behaviac::Monster*)self)->hello(); }
+
+	inline void Set_behaviac_Monster_enemyInfo(Agent* self, behaviac::EnemyInfo value) { ((behaviac::Monster*)self)->enemyInfo = value; };
+	inline const void* Get_behaviac_Monster_enemyInfo(Agent* self) { return &((behaviac::Monster*)self)->enemyInfo; };
+
+	inline behaviac::EBTStatus FunctionPointer_behaviac_Monster_callPyFunc(Agent* self, behaviac::string funcName) { return ((behaviac::Monster*)self)->callPyFunc(funcName); }
+	inline behaviac::EBTStatus FunctionPointer_behaviac_Monster_canSkillAttack(Agent* self, int skillId) { return ((behaviac::Monster*)self)->canSkillAttack(skillId); }
+	inline void FunctionPointer_behaviac_Monster_chaseTarget(Agent* self, int entityId) { ((behaviac::Monster*)self)->chaseTarget(entityId); }
+	inline void FunctionPointer_behaviac_Monster_findEnemys(Agent* self) { ((behaviac::Monster*)self)->findEnemys(); }
+	inline behaviac::EnemyInfo FunctionPointer_behaviac_Monster_getEnemyInfo(Agent* self) { return ((behaviac::Monster*)self)->getEnemyInfo(); }
+	inline int FunctionPointer_behaviac_Monster_getFightType(Agent* self) { return ((behaviac::Monster*)self)->getFightType(); }
 	inline void FunctionPointer_behaviac_Monster_LogMessage(char* param0) { behaviac::Monster::LogMessage(param0); }
+	inline behaviac::EBTStatus FunctionPointer_behaviac_Monster_randomWalk(Agent* self, float radius) { return ((behaviac::Monster*)self)->randomWalk(radius); }
+	inline void FunctionPointer_behaviac_Monster_useSkill(Agent* self, int skillId) { ((behaviac::Monster*)self)->useSkill(skillId); }
+	inline void Set_behaviac_EnemyInfo_entityId(Agent* self, int value) { ((behaviac::EnemyInfo*)self)->entityId = value; };
+	inline const void* Get_behaviac_EnemyInfo_entityId(Agent* self) { return &((behaviac::EnemyInfo*)self)->entityId; };
+
+	inline void Set_behaviac_EnemyInfo_dis(Agent* self, float value) { ((behaviac::EnemyInfo*)self)->dis = value; };
+	inline const void* Get_behaviac_EnemyInfo_dis(Agent* self) { return &((behaviac::EnemyInfo*)self)->dis; };
+
 }
 #endif // _BEHAVIAC_AGENT_PROPERTIES_H_

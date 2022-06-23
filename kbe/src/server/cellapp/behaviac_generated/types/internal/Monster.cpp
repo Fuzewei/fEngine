@@ -17,6 +17,8 @@ namespace behaviac
 
 	Monster::Monster()
 	{
+		targetID = 0;
+		useingSkillId = 0;
 ///<<< BEGIN WRITING YOUR CODE CONSTRUCTOR
 
 		///<<< END WRITING YOUR CODE
@@ -32,12 +34,14 @@ namespace behaviac
 	behaviac::EBTStatus Monster::canSkillAttack(int skillId)
 	{
 ///<<< BEGIN WRITING YOUR CODE canSkillAttack
+		auto ans = behaviac::EBTStatus::BT_FAILURE;;
 		auto ret = _callPyFunc(this, "canSkillAttack", PyLong_FromLong(skillId));
 		if (ret)
 		{
+			ans = (behaviac::EBTStatus)PyLong_AsLong(ret);
 			Py_DECREF(ret);
 		}
-		return behaviac::EBTStatus::BT_SUCCESS;
+		return ans;
 ///<<< END WRITING YOUR CODE
 	}
 
@@ -64,6 +68,20 @@ namespace behaviac
 ///<<< END WRITING YOUR CODE
 	}
 
+	behaviac::EBTStatus Monster::funcReturn(behaviac::EBTStatus re)
+	{
+///<<< BEGIN WRITING YOUR CODE funcReturn
+		return BT_INVALID;
+///<<< END WRITING YOUR CODE
+	}
+
+	double Monster::getEnemyDistance()
+	{
+///<<< BEGIN WRITING YOUR CODE getEnemyDistance
+		return enemyInfo.dis;
+///<<< END WRITING YOUR CODE
+	}
+
 	behaviac::EnemyInfo Monster::getEnemyInfo()
 	{
 ///<<< BEGIN WRITING YOUR CODE getEnemyInfo
@@ -86,7 +104,15 @@ namespace behaviac
 		behaviac::EnemyInfo tmp = { 0 ,0.0f };
 		tmp.entityId = EntityId;
 		tmp.dis = dis;
+		targetID = EntityId;
 		return tmp;
+///<<< END WRITING YOUR CODE
+	}
+
+	void Monster::idle()
+	{
+///<<< BEGIN WRITING YOUR CODE idle
+ 		_callPyFunc(this, "idle", Py_None);
 ///<<< END WRITING YOUR CODE
 	}
 
@@ -104,18 +130,30 @@ namespace behaviac
 ///<<< END WRITING YOUR CODE
 	}
 
+	void Monster::setInBattle(bool isInBattle)
+	{
+///<<< BEGIN WRITING YOUR CODE setInBattle
+		auto ret = _callPyFunc(this, "aiSetInBattle", PyBool_FromLong(isInBattle));
+		if (ret)
+		{
+			Py_DECREF(ret);
+		}
+///<<< END WRITING YOUR CODE
+	}
+
 	void Monster::useSkill(int skillId)
 	{
 ///<<< BEGIN WRITING YOUR CODE useSkill
 		PyObject* pArgs = PyTuple_New(2);
 		
 		PyTuple_SetItem(pArgs, 0, PyLong_FromLong(enemyInfo.entityId));
-		PyTuple_SetItem(pArgs, 1, PyLong_FromLong(2));
+		PyTuple_SetItem(pArgs, 1, PyLong_FromLong(skillId));
 		
 
 		auto ret = _callPyFunc(this, "useSkill", pArgs);
 		if (ret)
 		{
+			useingSkillId = skillId;
 			auto ans = (behaviac::EBTStatus)PyLong_AsLong(ret);
 			Py_DECREF(ret);
 		}

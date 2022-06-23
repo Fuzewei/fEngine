@@ -34,15 +34,27 @@ namespace behaviac
 
 		public: behaviac::EnemyInfo enemyInfo;
 
+		public: int targetID;
+
+		public: int useingSkillId;
+
 		public: behaviac::EBTStatus canSkillAttack(int skillId);
 
 		public: void chaseTarget(int entityId);
 
 		public: void findEnemys();
 
+		public: behaviac::EBTStatus funcReturn(behaviac::EBTStatus re);
+
+		public: double getEnemyDistance();
+
 		public: behaviac::EnemyInfo getEnemyInfo();
 
+		public: void idle();
+
 		public: behaviac::EBTStatus randomWalk(float radius);
+
+		public: void setInBattle(bool isInBattle);
 
 		public: void useSkill(int skillId);
 

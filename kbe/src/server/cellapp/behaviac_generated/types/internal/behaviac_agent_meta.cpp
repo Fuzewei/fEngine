@@ -268,7 +268,7 @@ namespace behaviac
 
 		virtual bool load()
 		{
-			AgentMeta::SetTotalSignature(2156017499u);
+			AgentMeta::SetTotalSignature(1573300920u);
 
 			AgentMeta* meta = NULL;
 			BEHAVIAC_UNUSED_VAR(meta);
@@ -302,17 +302,23 @@ namespace behaviac
 			meta->RegisterMethod(502968959u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorRemove());
 
 			// behaviac::Monster
-			meta = BEHAVIAC_NEW AgentMeta(3786478542u);
+			meta = BEHAVIAC_NEW AgentMeta(1900446319u);
 			AgentMeta::GetAgentMetas()[4159774213u] = meta;
 			meta->RegisterMemberProperty(3097763630u, BEHAVIAC_NEW CMemberProperty< behaviac::EnemyInfo >("enemyInfo", Set_behaviac_Monster_enemyInfo, Get_behaviac_Monster_enemyInfo));
+			meta->RegisterMemberProperty(2532596935u, BEHAVIAC_NEW CMemberProperty< int >("targetID", Set_behaviac_Monster_targetID, Get_behaviac_Monster_targetID));
+			meta->RegisterMemberProperty(2068325471u, BEHAVIAC_NEW CMemberProperty< int >("useingSkillId", Set_behaviac_Monster_useingSkillId, Get_behaviac_Monster_useingSkillId));
 			meta->RegisterMethod(916351369u, BEHAVIAC_NEW CAgentMethod_1< behaviac::EBTStatus, behaviac::string >(FunctionPointer_behaviac_Monster_callPyFunc));
 			meta->RegisterMethod(1618876204u, BEHAVIAC_NEW CAgentMethod_1< behaviac::EBTStatus, int >(FunctionPointer_behaviac_Monster_canSkillAttack));
 			meta->RegisterMethod(4257075051u, BEHAVIAC_NEW CAgentMethodVoid_1<int>(FunctionPointer_behaviac_Monster_chaseTarget));
 			meta->RegisterMethod(3261053510u, BEHAVIAC_NEW CAgentMethodVoid(FunctionPointer_behaviac_Monster_findEnemys));
+			meta->RegisterMethod(111329797u, BEHAVIAC_NEW CAgentMethod_1< behaviac::EBTStatus, behaviac::EBTStatus >(FunctionPointer_behaviac_Monster_funcReturn));
+			meta->RegisterMethod(2337514390u, BEHAVIAC_NEW CAgentMethod< double >(FunctionPointer_behaviac_Monster_getEnemyDistance));
 			meta->RegisterMethod(3873906922u, BEHAVIAC_NEW CAgentMethod< behaviac::EnemyInfo >(FunctionPointer_behaviac_Monster_getEnemyInfo));
 			meta->RegisterMethod(1925760633u, BEHAVIAC_NEW CAgentMethod< int >(FunctionPointer_behaviac_Monster_getFightType));
+			meta->RegisterMethod(1200690229u, BEHAVIAC_NEW CAgentMethodVoid(FunctionPointer_behaviac_Monster_idle));
 			meta->RegisterMethod(1045109914u, BEHAVIAC_NEW CAgentStaticMethodVoid_1<char*>(FunctionPointer_behaviac_Monster_LogMessage));
 			meta->RegisterMethod(725611547u, BEHAVIAC_NEW CAgentMethod_1< behaviac::EBTStatus, float >(FunctionPointer_behaviac_Monster_randomWalk));
+			meta->RegisterMethod(2284441500u, BEHAVIAC_NEW CAgentMethodVoid_1<bool>(FunctionPointer_behaviac_Monster_setInBattle));
 			meta->RegisterMethod(4229661355u, BEHAVIAC_NEW CAgentMethodVoid_1<int>(FunctionPointer_behaviac_Monster_useSkill));
 			meta->RegisterMethod(2521019022u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorAdd());
 			meta->RegisterMethod(2306090221u, BEHAVIAC_NEW CMethod_behaviac_Agent_VectorClear());

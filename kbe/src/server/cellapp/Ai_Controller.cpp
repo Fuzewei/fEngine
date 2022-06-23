@@ -1,4 +1,5 @@
 #include "Ai_Controller.h"
+#include "cellapp.h"
 #include "resmgr/resmgr.h"
 #include "server/serverconfig.h"
 
@@ -73,9 +74,8 @@ namespace KBEngine {
 	//-------------------------------------------------------------------------------------
 	behaviac::EBTStatus AiController::updateLoop()
 	{
-		
+		behaviac::Workspace::GetInstance()->SetDoubleValueSinceStartup(Cellapp::getSingleton().gameTimeInSeconds());
 		status = pAiAgentHandler_->btexec();
-		
 		return status;
 	}
 

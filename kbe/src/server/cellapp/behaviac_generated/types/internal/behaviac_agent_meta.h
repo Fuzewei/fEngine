@@ -23,14 +23,24 @@ namespace behaviac
 	inline void Set_behaviac_Monster_enemyInfo(Agent* self, behaviac::EnemyInfo value) { ((behaviac::Monster*)self)->enemyInfo = value; };
 	inline const void* Get_behaviac_Monster_enemyInfo(Agent* self) { return &((behaviac::Monster*)self)->enemyInfo; };
 
+	inline void Set_behaviac_Monster_targetID(Agent* self, int value) { ((behaviac::Monster*)self)->targetID = value; };
+	inline const void* Get_behaviac_Monster_targetID(Agent* self) { return &((behaviac::Monster*)self)->targetID; };
+
+	inline void Set_behaviac_Monster_useingSkillId(Agent* self, int value) { ((behaviac::Monster*)self)->useingSkillId = value; };
+	inline const void* Get_behaviac_Monster_useingSkillId(Agent* self) { return &((behaviac::Monster*)self)->useingSkillId; };
+
 	inline behaviac::EBTStatus FunctionPointer_behaviac_Monster_callPyFunc(Agent* self, behaviac::string funcName) { return ((behaviac::Monster*)self)->callPyFunc(funcName); }
 	inline behaviac::EBTStatus FunctionPointer_behaviac_Monster_canSkillAttack(Agent* self, int skillId) { return ((behaviac::Monster*)self)->canSkillAttack(skillId); }
 	inline void FunctionPointer_behaviac_Monster_chaseTarget(Agent* self, int entityId) { ((behaviac::Monster*)self)->chaseTarget(entityId); }
 	inline void FunctionPointer_behaviac_Monster_findEnemys(Agent* self) { ((behaviac::Monster*)self)->findEnemys(); }
+	inline behaviac::EBTStatus FunctionPointer_behaviac_Monster_funcReturn(Agent* self, behaviac::EBTStatus re) { return ((behaviac::Monster*)self)->funcReturn(re); }
+	inline double FunctionPointer_behaviac_Monster_getEnemyDistance(Agent* self) { return ((behaviac::Monster*)self)->getEnemyDistance(); }
 	inline behaviac::EnemyInfo FunctionPointer_behaviac_Monster_getEnemyInfo(Agent* self) { return ((behaviac::Monster*)self)->getEnemyInfo(); }
 	inline int FunctionPointer_behaviac_Monster_getFightType(Agent* self) { return ((behaviac::Monster*)self)->getFightType(); }
+	inline void FunctionPointer_behaviac_Monster_idle(Agent* self) { ((behaviac::Monster*)self)->idle(); }
 	inline void FunctionPointer_behaviac_Monster_LogMessage(char* param0) { behaviac::Monster::LogMessage(param0); }
 	inline behaviac::EBTStatus FunctionPointer_behaviac_Monster_randomWalk(Agent* self, float radius) { return ((behaviac::Monster*)self)->randomWalk(radius); }
+	inline void FunctionPointer_behaviac_Monster_setInBattle(Agent* self, bool isInBattle) { ((behaviac::Monster*)self)->setInBattle(isInBattle); }
 	inline void FunctionPointer_behaviac_Monster_useSkill(Agent* self, int skillId) { ((behaviac::Monster*)self)->useSkill(skillId); }
 	inline void Set_behaviac_EnemyInfo_entityId(Agent* self, int value) { ((behaviac::EnemyInfo*)self)->entityId = value; };
 	inline const void* Get_behaviac_EnemyInfo_entityId(Agent* self) { return &((behaviac::EnemyInfo*)self)->entityId; };

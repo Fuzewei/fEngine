@@ -7,6 +7,7 @@
 #include "Monster.h"
 
 ///<<< BEGIN WRITING YOUR CODE FILE_INIT
+#include <cmath>
 	///<<< END WRITING YOUR CODE
 
 namespace behaviac
@@ -20,14 +21,14 @@ namespace behaviac
 		targetID = 0;
 		useingSkillId = 0;
 ///<<< BEGIN WRITING YOUR CODE CONSTRUCTOR
-
+		
 		///<<< END WRITING YOUR CODE
 	}
 
 	Monster::~Monster()
 	{
 ///<<< BEGIN WRITING YOUR CODE DESTRUCTOR
-
+		
 		///<<< END WRITING YOUR CODE
 	}
 
@@ -49,6 +50,36 @@ namespace behaviac
 	{
 ///<<< BEGIN WRITING YOUR CODE chaseTarget
 		auto ret = _callPyFunc(this, "chaseTarget", PyLong_FromLong(entityId));
+		if (ret)
+		{
+			Py_DECREF(ret);
+		}
+///<<< END WRITING YOUR CODE
+	}
+
+	double Monster::distanceTo(behaviac::Vector3& position)
+	{
+///<<< BEGIN WRITING YOUR CODE distanceTo
+		const float d_x = position.x - this->positon.x;
+		const float d_y = position.y - this->positon.y;
+		const float d_z = position.z - this->positon.z;
+		return sqrtf(d_x * d_x + d_y * d_y + d_z * d_z);
+///<<< END WRITING YOUR CODE
+	}
+
+	void Monster::fightMove(int moveId, behaviac::Vector3& movePostion)
+	{
+///<<< BEGIN WRITING YOUR CODE fightMove
+		PyObject* pArgs = PyTuple_New(2);
+		PyObject* pyPostion = PyTuple_New(3);
+		PyTuple_SetItem(pyPostion, 0, PyLong_FromLong(movePostion.x));
+		PyTuple_SetItem(pyPostion, 1, PyLong_FromLong(movePostion.y));
+		PyTuple_SetItem(pyPostion, 2, PyLong_FromLong(movePostion.z));
+
+		PyTuple_SetItem(pArgs, 0, PyLong_FromLong(moveId));
+		PyTuple_SetItem(pArgs, 1, pyPostion);
+
+		auto ret = _callPyFunc(this, "fightMove", pArgs);
 		if (ret)
 		{
 			Py_DECREF(ret);
@@ -105,7 +136,25 @@ namespace behaviac
 		tmp.entityId = EntityId;
 		tmp.dis = dis;
 		targetID = EntityId;
+		getProperties();
 		return tmp;
+///<<< END WRITING YOUR CODE
+	}
+
+	void Monster::getFightMoveTarget(int moveId)
+	{
+///<<< BEGIN WRITING YOUR CODE getFightMoveTarget
+		auto pyPosition = _callPyFunc(this, "getFightMoveTarget", PyLong_FromLong(moveId));
+		if (pyPosition)
+		{
+			auto x = PyObject_GetAttrString(pyPosition, "x");
+			moveTargetPosition.x = PyFloat_AsDouble(x);
+			auto y = PyObject_GetAttrString(pyPosition, "y");
+			moveTargetPosition.y = PyFloat_AsDouble(y);
+			auto z = PyObject_GetAttrString(pyPosition, "z");
+			moveTargetPosition.z = PyFloat_AsDouble(z);
+			Py_DECREF(pyPosition);
+		}
 ///<<< END WRITING YOUR CODE
 	}
 
@@ -166,4 +215,25 @@ namespace behaviac
 }
 
 ///<<< BEGIN WRITING YOUR CODE FILE_UNINIT
+namespace behaviac
+{
+	//获取所属entity身上的属性
+	void Monster::getProperties()
+	{
+		PyObject* pyPosition = PyObject_GetAttrString((PyObject*)pEntity_, "position");
+		if (pyPosition)
+		{
+			auto x = PyObject_GetAttrString(pyPosition, "x");
+			positon.x = PyFloat_AsDouble(x);
+			auto y = PyObject_GetAttrString(pyPosition, "y");
+			positon.y = PyFloat_AsDouble(y);
+			auto z = PyObject_GetAttrString(pyPosition, "z");
+			positon.z = PyFloat_AsDouble(z);
+			Py_DECREF(x);
+			Py_DECREF(y);
+			Py_DECREF(z);
+			Py_DECREF(pyPosition);
+		}
+	}
+}
 ///<<< END WRITING YOUR CODE

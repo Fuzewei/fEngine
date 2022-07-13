@@ -43,4 +43,39 @@ namespace behaviac
 	}
 }
 
+namespace behaviac
+{
+	struct Vector3
+	{
+		float x;
+		float y;
+		float z;
+	};
+}
+
+BEHAVIAC_EXTEND_EXISTING_TYPE_EX(behaviac::Vector3, false);
+BEHAVIAC_DECLARE_TYPE_VECTOR_HANDLER(behaviac::Vector3);
+
+template< typename SWAPPER >
+inline void SwapByteImplement(behaviac::Vector3& v)
+{
+	SwapByteImplement< SWAPPER >(v.x);
+	SwapByteImplement< SWAPPER >(v.y);
+	SwapByteImplement< SWAPPER >(v.z);
+}
+
+namespace behaviac
+{
+	namespace PrivateDetails
+	{
+		template<>
+		inline bool Equal(const behaviac::Vector3& lhs, const behaviac::Vector3& rhs)
+		{
+			return Equal(lhs.x, rhs.x)
+				&& Equal(lhs.y, rhs.y)
+				&& Equal(lhs.z, rhs.z);
+		}
+	}
+}
+
 #endif // _BEHAVIAC_CUSTOMIZED_TYPES_H_

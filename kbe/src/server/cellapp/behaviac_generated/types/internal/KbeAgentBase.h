@@ -33,6 +33,8 @@ namespace behaviac
 
 		public: int getFightType();
 
+		public: float now();
+
 ///<<< BEGIN WRITING YOUR CODE CLASS_PART
 	
 	public:

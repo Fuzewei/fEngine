@@ -34,6 +34,10 @@ namespace behaviac
 
 		public: behaviac::EnemyInfo enemyInfo;
 
+		public: behaviac::Vector3 moveTargetPosition;
+
+		public: behaviac::Vector3 positon;
+
 		public: int targetID;
 
 		public: int useingSkillId;
@@ -42,6 +46,10 @@ namespace behaviac
 
 		public: void chaseTarget(int entityId);
 
+		public: double distanceTo(behaviac::Vector3& position);
+
+		public: void fightMove(int moveId, behaviac::Vector3& movePostion);
+
 		public: void findEnemys();
 
 		public: behaviac::EBTStatus funcReturn(behaviac::EBTStatus re);
@@ -49,6 +57,8 @@ namespace behaviac
 		public: double getEnemyDistance();
 
 		public: behaviac::EnemyInfo getEnemyInfo();
+
+		public: void getFightMoveTarget(int moveId);
 
 		public: void idle();
 
@@ -59,7 +69,7 @@ namespace behaviac
 		public: void useSkill(int skillId);
 
 ///<<< BEGIN WRITING YOUR CODE CLASS_PART
-
+		public: void getProperties();
 
 
 				  ///<<< END WRITING YOUR CODE
@@ -71,6 +81,11 @@ namespace behaviac
 }
 
 ///<<< BEGIN WRITING YOUR CODE FILE_UNINIT
+
+namespace behaviac
+{
+
+}
 
 ///<<< END WRITING YOUR CODE
 

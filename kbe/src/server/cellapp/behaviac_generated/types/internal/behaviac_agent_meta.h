@@ -19,9 +19,16 @@ namespace behaviac
 	inline behaviac::EBTStatus FunctionPointer_behaviac_KbeAgentBase_callPyFunc(Agent* self, behaviac::string funcName) { return ((behaviac::KbeAgentBase*)self)->callPyFunc(funcName); }
 	inline int FunctionPointer_behaviac_KbeAgentBase_getFightType(Agent* self) { return ((behaviac::KbeAgentBase*)self)->getFightType(); }
 	inline void FunctionPointer_behaviac_KbeAgentBase_LogMessage(char* param0) { behaviac::KbeAgentBase::LogMessage(param0); }
+	inline float FunctionPointer_behaviac_KbeAgentBase_now(Agent* self) { return ((behaviac::KbeAgentBase*)self)->now(); }
 
 	inline void Set_behaviac_Monster_enemyInfo(Agent* self, behaviac::EnemyInfo value) { ((behaviac::Monster*)self)->enemyInfo = value; };
 	inline const void* Get_behaviac_Monster_enemyInfo(Agent* self) { return &((behaviac::Monster*)self)->enemyInfo; };
+
+	inline void Set_behaviac_Monster_moveTargetPosition(Agent* self, behaviac::Vector3 value) { ((behaviac::Monster*)self)->moveTargetPosition = value; };
+	inline const void* Get_behaviac_Monster_moveTargetPosition(Agent* self) { return &((behaviac::Monster*)self)->moveTargetPosition; };
+
+	inline void Set_behaviac_Monster_positon(Agent* self, behaviac::Vector3 value) { ((behaviac::Monster*)self)->positon = value; };
+	inline const void* Get_behaviac_Monster_positon(Agent* self) { return &((behaviac::Monster*)self)->positon; };
 
 	inline void Set_behaviac_Monster_targetID(Agent* self, int value) { ((behaviac::Monster*)self)->targetID = value; };
 	inline const void* Get_behaviac_Monster_targetID(Agent* self) { return &((behaviac::Monster*)self)->targetID; };
@@ -36,9 +43,11 @@ namespace behaviac
 	inline behaviac::EBTStatus FunctionPointer_behaviac_Monster_funcReturn(Agent* self, behaviac::EBTStatus re) { return ((behaviac::Monster*)self)->funcReturn(re); }
 	inline double FunctionPointer_behaviac_Monster_getEnemyDistance(Agent* self) { return ((behaviac::Monster*)self)->getEnemyDistance(); }
 	inline behaviac::EnemyInfo FunctionPointer_behaviac_Monster_getEnemyInfo(Agent* self) { return ((behaviac::Monster*)self)->getEnemyInfo(); }
+	inline void FunctionPointer_behaviac_Monster_getFightMoveTarget(Agent* self, int moveId) { ((behaviac::Monster*)self)->getFightMoveTarget(moveId); }
 	inline int FunctionPointer_behaviac_Monster_getFightType(Agent* self) { return ((behaviac::Monster*)self)->getFightType(); }
 	inline void FunctionPointer_behaviac_Monster_idle(Agent* self) { ((behaviac::Monster*)self)->idle(); }
 	inline void FunctionPointer_behaviac_Monster_LogMessage(char* param0) { behaviac::Monster::LogMessage(param0); }
+	inline float FunctionPointer_behaviac_Monster_now(Agent* self) { return ((behaviac::Monster*)self)->now(); }
 	inline behaviac::EBTStatus FunctionPointer_behaviac_Monster_randomWalk(Agent* self, float radius) { return ((behaviac::Monster*)self)->randomWalk(radius); }
 	inline void FunctionPointer_behaviac_Monster_setInBattle(Agent* self, bool isInBattle) { ((behaviac::Monster*)self)->setInBattle(isInBattle); }
 	inline void FunctionPointer_behaviac_Monster_useSkill(Agent* self, int skillId) { ((behaviac::Monster*)self)->useSkill(skillId); }
@@ -47,6 +56,15 @@ namespace behaviac
 
 	inline void Set_behaviac_EnemyInfo_dis(Agent* self, float value) { ((behaviac::EnemyInfo*)self)->dis = value; };
 	inline const void* Get_behaviac_EnemyInfo_dis(Agent* self) { return &((behaviac::EnemyInfo*)self)->dis; };
+
+	inline void Set_behaviac_Vector3_x(Agent* self, float value) { ((behaviac::Vector3*)self)->x = value; };
+	inline const void* Get_behaviac_Vector3_x(Agent* self) { return &((behaviac::Vector3*)self)->x; };
+
+	inline void Set_behaviac_Vector3_y(Agent* self, float value) { ((behaviac::Vector3*)self)->y = value; };
+	inline const void* Get_behaviac_Vector3_y(Agent* self) { return &((behaviac::Vector3*)self)->y; };
+
+	inline void Set_behaviac_Vector3_z(Agent* self, float value) { ((behaviac::Vector3*)self)->z = value; };
+	inline const void* Get_behaviac_Vector3_z(Agent* self) { return &((behaviac::Vector3*)self)->z; };
 
 }
 #endif // _BEHAVIAC_AGENT_PROPERTIES_H_

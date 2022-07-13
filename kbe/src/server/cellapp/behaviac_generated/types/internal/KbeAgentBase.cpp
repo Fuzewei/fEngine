@@ -46,8 +46,6 @@ namespace behaviac
 		return NULL;
 	}
 
-	
-
 ///<<< END WRITING YOUR CODE
 
 	KbeAgentBase::KbeAgentBase()
@@ -90,6 +88,13 @@ namespace behaviac
 			ans = PyLong_AsLong(state);
 		}
 		return ans;
+///<<< END WRITING YOUR CODE
+	}
+
+	float KbeAgentBase::now()
+	{
+///<<< BEGIN WRITING YOUR CODE now
+		return 0.0f;
 ///<<< END WRITING YOUR CODE
 	}
 

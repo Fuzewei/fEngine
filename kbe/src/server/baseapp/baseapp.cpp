@@ -1365,12 +1365,12 @@ void Baseapp::onCreateEntityFromDBIDCallback(Network::Channel* pChannel, KBEngin
 	EntityDef::context().currEntityID = entityID;
 	EntityDef::context().currComponentType = BASEAPP_TYPE;
 
-	PyObject* pyDict = createDictDataFromPersistentStream(s, entityType.c_str());
+	PyObject* pyDict = createDictDataFromPersistentStream(s, entityType.c_str()); //把从数据库中的数据转换为dict，key是属性名，value是python对象
 	PyObject* e = Baseapp::getSingleton().createEntity(entityType.c_str(), pyDict, false, entityID);
 	if(e)
 	{
 		static_cast<Entity*>(e)->dbid(dbInterfaceIndex, dbid);
-		static_cast<Entity*>(e)->initializeEntity(pyDict);
+		static_cast<Entity*>(e)->initializeEntity(pyDict); //这里会设置好pyDict的属性值，然后就调用__init__
 		Py_DECREF(pyDict);
 
 		KBE_SHA1 sha;

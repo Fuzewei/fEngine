@@ -759,13 +759,14 @@ protected:
 	FIXEDDICT_KEYTYPE_MAP			keyTypes_;				
 
 	// 实现脚本模块
-	PyObject*						implObj_;				
+	PyObject*						implObj_;	 //implementedBy的类对象		
 
-	PyObject*						pycreateObjFromDict_;
+	PyObject*						pycreateObjFromDict_; //implementedBy的类里的函数	
 	PyObject*						pygetDictFromObj_;
 
 	PyObject*						pyisSameType_;
 
+	//implementedBy的字符串
 	std::string						moduleName_;		
 };
 

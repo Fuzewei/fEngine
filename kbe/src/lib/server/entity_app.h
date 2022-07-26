@@ -593,7 +593,7 @@ E* EntityApp<E>::createEntity(const char* entityType, PyObject* params,
 	E* entity = onCreateEntity(obj, sm, id);
 
 	if(initProperty)
-		entity->initProperty();
+		entity->initProperty(); //这一步回去读entity的定义，并用def里的默认值初始化
 
 	// 将entity加入entities
 	pEntities_->add(id, entity); 

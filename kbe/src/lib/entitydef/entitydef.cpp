@@ -258,7 +258,7 @@ ScriptDefModule* EntityDef::registerNewScriptDefModule(const std::string& module
 	{
 		__scriptTypeMappingUType[moduleName] = g_scriptUtype;
 		pScriptModule = new ScriptDefModule(moduleName, g_scriptUtype++);
-		EntityDef::__scriptModules.push_back(pScriptModule);
+		EntityDef::__scriptModules.push_back(pScriptModule); //g_scriptUtype -1 就是对应的pScriptModule
 	}
 
 	return pScriptModule;
